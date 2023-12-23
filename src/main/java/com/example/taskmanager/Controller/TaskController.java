@@ -31,23 +31,23 @@ public class TaskController {
         } else {
             model.addAttribute("tasks", tasks);
         }
-        return "listTasks";
+        return "Tasks/listTasks";
     }
 
 
     @RequestMapping("/NewTasks")
     public String newTasks(Model model){
         model.addAttribute("task", new Tasks());
-        return "addTasks";
+        return "Tasks/addTasks";
     }
 
     @PostMapping("/AddTasks")
     public String addTasks(@Valid @ModelAttribute("task") Tasks task, BindingResult result){
         if (result.hasErrors()){
-            return "addTasks";
+            return "Tasks/addTasks";
         }
         taskRepository.save(task);
-        return "redirect:/ListTasks";
+        return "redirect:/Tasks/listTasks";
     }
 
     @GetMapping("/Complete")
@@ -57,7 +57,7 @@ public class TaskController {
 
         }else {
             model.addAttribute("error", "No Tasks of Id: " + taskId + " exist!");
-            return "error";
+            return "Tasks/error";
         }
         return "redirect:/";
     }

@@ -18,6 +18,8 @@ public class Tasks {
     private LocalDate startDate;
     private LocalDate endDate;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private User user;
     public int getId() {
         return id;
     }
@@ -72,5 +74,13 @@ public class Tasks {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
